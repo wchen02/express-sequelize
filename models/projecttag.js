@@ -1,22 +1,20 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
   const ProjectTag = sequelize.define('ProjectTag', {
     projectId: {
       type: DataTypes.INTEGER,
       unique: 'projectTagIndex',
-      primaryKey: true
+      primaryKey: true,
     },
     tagId: {
       type: DataTypes.INTEGER,
       unique: 'projectTagIndex',
-      primaryKey: true
-    }
+      primaryKey: true,
+    },
   }, {
-    timestamps: false
+    timestamps: false,
   });
 
-  ProjectTag.associate = function(models) {
-  };
+  ProjectTag.associate = () => {};
 
   return ProjectTag;
 };

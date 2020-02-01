@@ -1,55 +1,50 @@
-'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Comments', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      projectId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Projects"
-          },
-          key: 'id'
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Comments', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER,
+    },
+    projectId: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+      references: {
+        model: {
+          tableName: 'Projects',
         },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
+        key: 'id',
       },
-      userId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Users"
-          },
-          key: 'id'
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
+    },
+    userId: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+      references: {
+        model: {
+          tableName: 'Users',
         },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
+        key: 'id',
       },
-      description: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
-    }).then(() => {
-      queryInterface.addIndex('Comments', ['projectId']);
-      queryInterface.addIndex('Comments', ['userId']);
-    });
-  },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Comments');
-  }
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
+    },
+    description: {
+      allowNull: false,
+      type: Sequelize.STRING,
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+    },
+  }).then(() => {
+    queryInterface.addIndex('Comments', ['projectId']);
+    queryInterface.addIndex('Comments', ['userId']);
+  }),
+  down: (queryInterface) => queryInterface.dropTable('Comments'),
 };

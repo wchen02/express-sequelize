@@ -1,39 +1,34 @@
-'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('ProjectTags', {
-      projectId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Projects"
-          },
-          key: 'id'
+  up: (queryInterface, Sequelize) => queryInterface.createTable('ProjectTags', {
+    projectId: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+      references: {
+        model: {
+          tableName: 'Projects',
         },
-        onUpdate: 'cascade',
-        onDelete: 'cascade',
-        primaryKey: true
+        key: 'id',
       },
-      tagId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Tags"
-          },
-          key: 'id'
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
+      primaryKey: true,
+    },
+    tagId: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+      references: {
+        model: {
+          tableName: 'Tags',
         },
-        onUpdate: 'cascade',
-        onDelete: 'cascade',
-        primaryKey: true
-      }
-    }).then(() => {
-      queryInterface.addIndex('ProjectTags', ['projectId']);
-      queryInterface.addIndex('ProjectTags', ['tagId']);
-    });
-  },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('ProjectTags');
-  }
+        key: 'id',
+      },
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
+      primaryKey: true,
+    },
+  }).then(() => {
+    queryInterface.addIndex('ProjectTags', ['projectId']);
+    queryInterface.addIndex('ProjectTags', ['tagId']);
+  }),
+  down: (queryInterface) => queryInterface.dropTable('ProjectTags'),
 };
