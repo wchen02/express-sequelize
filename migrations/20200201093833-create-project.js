@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: {
@@ -19,12 +20,15 @@ module.exports = {
         allowNull: false
       },      
       title: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       description: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       img: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
