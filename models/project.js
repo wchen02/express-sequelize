@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
 
   Project.associate = function(models) {
     models.Project.belongsTo(models.User, {
-      onDelete: "CASCADE",
       foreignKey: {
         allowNull: false
       }

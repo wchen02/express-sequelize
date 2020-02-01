@@ -17,6 +17,8 @@ module.exports = {
           },
           key: 'id'
         },
+        onUpdate: 'cascade',
+        onDelete: 'cascade',
         allowNull: false
       },      
       title: {
@@ -39,7 +41,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    }).then(() => queryInterface.addIndex('Projects', ['userId']));
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Projects');

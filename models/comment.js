@@ -8,13 +8,11 @@ module.exports = (sequelize, DataTypes) => {
 
   Comment.associate = function(models) {
     models.Comment.belongsTo(models.Project, {
-      onDelete: "CASCADE",
       foreignKey: {
         allowNull: false
       }
     });
     models.Comment.belongsTo(models.User, {
-      onDelete: "CASCADE",
       foreignKey: {
         allowNull: false
       }

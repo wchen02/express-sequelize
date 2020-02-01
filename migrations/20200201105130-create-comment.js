@@ -16,7 +16,9 @@ module.exports = {
             tableName: "Projects"
           },
           key: 'id'
-        }
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       userId: {
         allowNull: false,
@@ -26,7 +28,9 @@ module.exports = {
             tableName: "Users"
           },
           key: 'id'
-        }
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       description: {
         allowNull: false,
@@ -40,6 +44,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+    }).then(() => {
+      queryInterface.addIndex('Comments', ['projectId']);
+      queryInterface.addIndex('Comments', ['userId']);
     });
   },
   down: (queryInterface, Sequelize) => {

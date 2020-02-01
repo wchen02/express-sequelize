@@ -11,6 +11,8 @@ module.exports = {
           },
           key: 'id'
         },
+        onUpdate: 'cascade',
+        onDelete: 'cascade',
         primaryKey: true
       },
       tagId: {
@@ -22,8 +24,13 @@ module.exports = {
           },
           key: 'id'
         },
+        onUpdate: 'cascade',
+        onDelete: 'cascade',
         primaryKey: true
       }
+    }).then(() => {
+      queryInterface.addIndex('ProjectTags', ['projectId']);
+      queryInterface.addIndex('ProjectTags', ['tagId']);
     });
   },
   down: (queryInterface, Sequelize) => {
