@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       }
     });
+    models.Project.belongsToMany(models.Tag, { through: 'ProjectTags' });
   };
 
   return Project;
