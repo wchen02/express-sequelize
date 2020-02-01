@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
     models.Project.belongsToMany(models.Tag, { through: 'ProjectTags' });
+    models.Project.hasMany(models.Comment);
   };
 
   return Project;
