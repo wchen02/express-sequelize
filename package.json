@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=express-sequelize:* ./bin/www"
+    "dev": "DEBUG=express-sequelize:* ./bin/www",
+    "lint": "eslint ."
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -20,6 +21,9 @@
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0",
     "sequelize-cli": "^5.5.1"
   }
 }
