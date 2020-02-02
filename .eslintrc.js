@@ -16,6 +16,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
   },
+  plugins: ['jest'],
   rules: {
     'jest/no-disabled-tests': 'warn',
     'jest/no-focused-tests': 'error',
