@@ -7,6 +7,9 @@ Express + sequelize server for displaying user portfolio.
 ```shell
 npm install
 npm install --only=dev
-npm run migrate-seed
+cd express-sequelize
+touch db.development.sqlite
+npm run migrate
+npm run seed
 npm run dev
 ```
