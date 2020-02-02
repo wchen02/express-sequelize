@@ -11,7 +11,8 @@
     "rollback": "sequelize-cli db:migrate:undo:all",
     "seed": "sequelize-cli db:seed:all",
     "unseed": "sequelize-cli db:seed:undo:all",
-    "migrate-seed": "npm run unseed && npm run rollback && npm run migrate && npm run seed"
+    "migrate-seed": "npm run unseed && npm run rollback && npm run migrate && npm run seed",
+    "test": "jest"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -30,6 +31,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.0",
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "sequelize-cli": "^5.5.1"
   }
