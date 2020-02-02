@@ -11,12 +11,13 @@
     "rollback": "sequelize-cli db:migrate:undo:all",
     "seed": "sequelize-cli db:seed:all",
     "unseed": "sequelize-cli db:seed:undo:all",
-    "migrate-seed": "npm run unseed && npm run rollback && npm run migrate && npm run seed",
-    "test": "jest"
+    "pretest": "NODE_ENV=test npm run unseed && NODE_ENV=test npm run migrate && NODE_ENV=test npm run seed",
+    "test": "NODE_ENV=test jest --color"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv-flow": "^3.1.0",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",

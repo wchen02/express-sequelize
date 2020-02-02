@@ -1,18 +1,28 @@
+require('dotenv-flow').config();
+
 module.exports = {
   development: {
-    dialect: 'sqlite',
-    storage: './db.development.sqlite',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    dialect: 'postgres',
   },
   test: {
-    dialect: 'sqlite',
-    storage: ':memory:',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    dialect: 'postgres',
+    logging: false,
   },
   production: {
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    host: process.env.DB_HOSTNAME,
+    host: process.env.DB_HOST,
     dialect: 'postgres',
-    use_env_variable: 'DATABASE_URL',
+    logging: false,
+    use_env_variable: 'DB_URL',
   },
 };
