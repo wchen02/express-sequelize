@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=express-sequelize:* ./bin/www",
+    "dev": "nodemon --exec DEBUG=express-sequelize:* ./bin/www",
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
     "migrate": "sequelize-cli db:migrate",
@@ -30,6 +30,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.0",
+    "nodemon": "^2.0.2",
     "sequelize-cli": "^5.5.1"
   }
 }

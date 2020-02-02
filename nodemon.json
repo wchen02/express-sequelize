@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "ignore": ["*.test.js", "migrations/*", "seeders/*", "node_modules/*"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js,json,sass,pug"
+}
