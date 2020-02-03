@@ -5,10 +5,19 @@ const models = require('../../models');
 const debug = getDebugger(__filename);
 const baseControllers = {};
 
+/**
+ * Create controllers from model names
+ */
 const modelApiControllers = createObjectsFromModels(
-  (modelName) => {
-    const newModelName = modelName[0].toUpperCase() + modelName.substring(1);
-    return (newModelName in models) ? baseController(models[newModelName]) : null;
+  (lowerCaseModelName) => {
+    const modelNames = Object.keys(models);
+    // in case model name is multi-words, find the real name from models
+    // ex: posttag => PostTag
+    const realModelName = modelNames.reduce(
+      (prevName, name) => (name.toLowerCase() === lowerCaseModelName ? name : prevName),
+    );
+
+    return baseController(models[realModelName]);
   },
 );
 
@@ -19,4 +28,4 @@ for (const modelApiRouterItem of modelApiControllers) {
   baseControllers[name] = object;
 }
 
-module.exports = modelApiControllers;
+module.exports = baseControllers;
