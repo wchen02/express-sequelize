@@ -1,16 +1,22 @@
+const { createObjectsFromModels, getDebugger } = require('../../utils');
 const baseController = require('./baseController');
 const models = require('../../models');
 
+const debug = getDebugger(__filename);
 const baseControllers = {};
 
-/**
- * Set up api controller for models
- */
+const modelApiControllers = createObjectsFromModels(
+  (modelName) => {
+    const newModelName = modelName[0].toUpperCase() + modelName.substring(1);
+    return (newModelName in models) ? baseController(models[newModelName]) : null;
+  },
+);
+
 // eslint-disable-next-line no-restricted-syntax
-for (const [modelName, model] of Object.entries(models)) {
-  if (modelName.toLowerCase() !== 'sequelize') {
-    baseControllers[modelName.toLowerCase()] = baseController(model);
-  }
+for (const modelApiRouterItem of modelApiControllers) {
+  const { name, object } = modelApiRouterItem;
+  debug(`Sets up ${name} api controller`);
+  baseControllers[name] = object;
 }
 
-module.exports = baseControllers;
+module.exports = modelApiControllers;
