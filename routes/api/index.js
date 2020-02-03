@@ -1,6 +1,7 @@
-const fs = require('fs');
 const path = require('path');
 const express = require('express');
+const debug = require('debug')('express-sequelize:routes');
+const { getDirFiles } = require('../../utils');
 const baseApiRoutes = require('./baseApiRoutes');
 const baseControllers = require('../../controllers/api');
 
@@ -11,15 +12,39 @@ router.get('/', (req, res) => {
 });
 
 /**
- * Set up CRUD endpoints api router for models
+ * Creates routers by scanning models directory and exclude routers
+ * that were overriden in the current directory.
+ *
+ * @example [{ modelName: user, modelApiRouter: router }]
+ * @param createRouter callback to create router
+ *
+ * @returns [{ modelName, modelApiRouter }]
  */
-fs
-  .readdirSync(path.join(__dirname, '../../models'))
-  .filter((file) => (file.indexOf('.') !== 0) && (file !== 'index.js') && (file.slice(-3) === '.js'))
-  .forEach((file) => {
-    const model = path.basename(file, '.js').toLowerCase();
-    const modelRouter = baseApiRoutes(baseControllers[model]);
-    router.use(`/${model}`, modelRouter);
-  });
+exports.getModelApiRouters = (createRouter) => {
+  const modelRouterMap = [];
+  const routerFiles = getDirFiles(__dirname, '.js');
+  getDirFiles(
+    path.join(__dirname, '../../models'),
+    '.js',
+    routerFiles,
+    (filename) => {
+      const modelName = path.basename(filename, '.js').toLowerCase();
+      modelRouterMap.push({ modelName, modelApiRouter: createRouter(modelName) });
+    },
+  );
+
+  return modelRouterMap;
+};
+
+const modelApiRouters = exports.getModelApiRouters(
+  (modelName) => baseApiRoutes(baseControllers[modelName]),
+);
+
+// eslint-disable-next-line no-restricted-syntax
+for (const modelApiRouterItem of modelApiRouters) {
+  const { modelName, modelApiRouter } = modelApiRouterItem;
+  debug(`Sets up /${modelName} route`);
+  router.use(`/${modelName}`, modelApiRouter);
+}
 
 module.exports = router;
