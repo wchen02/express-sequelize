@@ -1,9 +1,9 @@
 const express = require('express');
-const debug = require('debug')('express-sequelize:routes');
-const { createObjectsFromModels } = require('../../utils');
+const { createObjectsFromModels, getDebugger } = require('../../utils');
 const baseApiRoutes = require('./baseApiRoutes');
 const baseControllers = require('../../controllers/api');
 
+const debug = getDebugger(__filename);
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -17,7 +17,7 @@ const modelApiRouters = createObjectsFromModels(
 // eslint-disable-next-line no-restricted-syntax
 for (const modelApiRouterItem of modelApiRouters) {
   const { name, object } = modelApiRouterItem;
-  debug(`Sets up /${name} route`);
+  debug(`Sets up /api/${name} route`);
   router.use(`/${name}`, object);
 }
 

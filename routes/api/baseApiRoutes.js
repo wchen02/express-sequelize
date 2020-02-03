@@ -1,5 +1,6 @@
 const express = require('express');
 const validator = require('validator');
+const debug = require('../../utils').getDebugger(__filename);
 
 module.exports = (controller) => {
   const router = express.Router();
@@ -10,6 +11,7 @@ module.exports = (controller) => {
       res.json(rows);
     } catch (err) {
       res.sendStatus(500);
+      debug(err);
     }
   });
 
@@ -37,6 +39,7 @@ module.exports = (controller) => {
       res.status(400).json({
         err,
       });
+      debug(err);
     }
   });
 
@@ -56,6 +59,7 @@ module.exports = (controller) => {
       res.status(400).json({
         err,
       });
+      debug(err);
     }
   };
 
@@ -77,6 +81,7 @@ module.exports = (controller) => {
       res.status(400).json({
         err,
       });
+      debug(err);
     }
   });
 

@@ -3,9 +3,9 @@
 /**
  * Module dependencies.
  */
-const debug = require('debug')('express-sequelize:server');
 const http = require('http');
 const app = require('../app');
+const debug = require('../utils').getDebugger(__filename);
 
 /**
  * Normalize a port into a number, string, or false.

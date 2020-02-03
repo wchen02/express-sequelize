@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const debugModule = require('debug');
 
 exports.getDirFiles = (dir, extension, excludeFiles, callback) => {
   const files = fs
@@ -40,4 +41,11 @@ exports.createObjectsFromModels = (createObjectCb) => {
   );
 
   return modelObjectMap;
+};
+
+exports.getDebugger = (filename) => {
+  const projectName = 'express-sequelize';
+  const indexOfProject = __filename.lastIndexOf(projectName);
+  const projectFilename = filename.substring(indexOfProject + projectName.length);
+  return debugModule(`${projectName}:${projectFilename}`);
 };
