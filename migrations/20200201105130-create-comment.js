@@ -6,7 +6,7 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    postId: {
+    PostId: {
       allowNull: false,
       type: Sequelize.INTEGER,
       references: {
@@ -18,7 +18,7 @@ module.exports = {
       onUpdate: 'cascade',
       onDelete: 'cascade',
     },
-    userId: {
+    UserId: {
       allowNull: false,
       type: Sequelize.INTEGER,
       references: {
@@ -43,8 +43,8 @@ module.exports = {
       type: Sequelize.DATE,
     },
   }).then(() => {
-    queryInterface.addIndex('Comments', ['postId']);
-    queryInterface.addIndex('Comments', ['userId']);
+    queryInterface.addIndex('Comments', ['PostId']);
+    queryInterface.addIndex('Comments', ['UserId']);
   }),
   down: (queryInterface) => queryInterface.dropTable('Comments'),
 };

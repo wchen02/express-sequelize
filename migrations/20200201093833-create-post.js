@@ -6,7 +6,7 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    userId: {
+    UserId: {
       allowNull: false,
       type: Sequelize.INTEGER,
       references: {
@@ -38,6 +38,6 @@ module.exports = {
       allowNull: false,
       type: Sequelize.DATE,
     },
-  }).then(() => queryInterface.addIndex('Posts', ['userId'])),
+  }).then(() => queryInterface.addIndex('Posts', ['UserId'])),
   down: (queryInterface) => queryInterface.dropTable('Posts'),
 };

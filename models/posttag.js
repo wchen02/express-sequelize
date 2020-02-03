@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
   const PostTag = sequelize.define('PostTag', {
-    postId: {
+    PostId: {
       type: DataTypes.INTEGER,
       unique: 'postTagIndex',
       primaryKey: true,
     },
-    tagId: {
+    TagId: {
       type: DataTypes.INTEGER,
       unique: 'postTagIndex',
       primaryKey: true,

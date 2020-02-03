@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('PostTags', {
-    postId: {
+    PostId: {
       allowNull: false,
       type: Sequelize.INTEGER,
       references: {
@@ -13,7 +13,7 @@ module.exports = {
       onDelete: 'cascade',
       primaryKey: true,
     },
-    tagId: {
+    TagId: {
       allowNull: false,
       type: Sequelize.INTEGER,
       references: {
@@ -27,8 +27,8 @@ module.exports = {
       primaryKey: true,
     },
   }).then(() => {
-    queryInterface.addIndex('PostTags', ['postId']);
-    queryInterface.addIndex('PostTags', ['tagId']);
+    queryInterface.addIndex('PostTags', ['PostId']);
+    queryInterface.addIndex('PostTags', ['TagId']);
   }),
   down: (queryInterface) => queryInterface.dropTable('PostTags'),
 };
