@@ -58,17 +58,34 @@ describe('baseApiRoutes', () => {
     mockedCreateParams = undefined;
   });
 
-  it('should get all resources', async () => {
-    mockedGetAllResp = [{ dummy: true }];
+  describe('getAll', () => {
+    it('should get all resources', async () => {
+      mockedGetAllResp = [{ dummy: true }];
 
-    await router({
-      method: 'GET',
-      url: '/',
-    }, mockedRes);
+      await router({
+        method: 'GET',
+        url: '/',
+      }, mockedRes);
 
-    expect(mockedGetAll).toBeCalledTimes(1);
-    expect(mockedRes.json).toBeCalledTimes(1);
-    expect(mockedRes.json).toBeCalledWith(mockedGetAllResp);
+      expect(mockedGetAll).toBeCalledTimes(1);
+      expect(mockedRes.json).toBeCalledTimes(1);
+      expect(mockedRes.json).toBeCalledWith(mockedGetAllResp);
+    });
+
+    it('should return 500 on error', async () => {
+      mockedGetAll.mockImplementation(() => {
+        throw new Error('no good');
+      });
+
+      await router({
+        method: 'GET',
+        url: '/',
+      }, mockedRes);
+
+      expect(mockedGetAll).toBeCalledTimes(1);
+      expect(mockedRes.sendStatus).toBeCalledTimes(1);
+      expect(mockedRes.sendStatus).toBeCalledWith(500);
+    });
   });
 
   describe('get', () => {

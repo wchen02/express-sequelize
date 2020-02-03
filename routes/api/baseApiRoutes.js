@@ -5,8 +5,12 @@ module.exports = (controller) => {
   const router = express.Router();
 
   router.get('/', async (req, res) => {
-    const rows = await controller.getAll();
-    res.json(rows);
+    try {
+      const rows = await controller.getAll();
+      res.json(rows);
+    } catch (err) {
+      res.sendStatus(500);
+    }
   });
 
   router.get('/:id', async (req, res) => {
