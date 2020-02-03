@@ -1,4 +1,4 @@
-const baseController = require('./baseController');
+const baseApiController = require('./baseApiController');
 
 let mockedRows;
 const mockFindAndCountAll = jest.fn();
@@ -19,7 +19,7 @@ afterEach(() => {
 });
 
 describe('controller', () => {
-  const controller = baseController(mockedModel);
+  const controller = baseApiController(mockedModel);
   it('should get all resources', async () => {
     mockedRows = 1;
     const rows = await controller.getAll();

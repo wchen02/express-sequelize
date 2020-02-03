@@ -1,7 +1,7 @@
 const express = require('express');
 const { createObjectsFromModels, getDebugger } = require('../../utils');
 const baseApiRoutes = require('./baseApiRoutes');
-const baseControllers = require('../../controllers/api');
+const baseApiControllers = require('../../controllers/api');
 
 const debug = getDebugger(__filename);
 const router = express.Router();
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 const modelApiRouters = createObjectsFromModels(
-  (modelName) => baseApiRoutes(baseControllers[modelName]),
+  (modelName) => baseApiRoutes(baseApiControllers[modelName]),
 );
 
 // eslint-disable-next-line no-restricted-syntax

@@ -1,9 +1,9 @@
 const { createObjectsFromModels, getDebugger } = require('../../utils');
-const baseController = require('./baseController');
+const baseApiController = require('./baseApiController');
 const models = require('../../models');
 
 const debug = getDebugger(__filename);
-const baseControllers = {};
+const baseApiControllers = {};
 
 /**
  * Create controllers from model names
@@ -17,7 +17,7 @@ const modelApiControllers = createObjectsFromModels(
       (prevName, name) => (name.toLowerCase() === lowerCaseModelName ? name : prevName),
     );
 
-    return baseController(models[realModelName]);
+    return baseApiController(models[realModelName]);
   },
 );
 
@@ -25,7 +25,7 @@ const modelApiControllers = createObjectsFromModels(
 for (const modelApiRouterItem of modelApiControllers) {
   const { name, object } = modelApiRouterItem;
   debug(`Sets up ${name} api controller`);
-  baseControllers[name] = object;
+  baseApiControllers[name] = object;
 }
 
-module.exports = baseControllers;
+module.exports = baseApiControllers;
