@@ -6,12 +6,12 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    projectId: {
+    postId: {
       allowNull: false,
       type: Sequelize.INTEGER,
       references: {
         model: {
-          tableName: 'Projects',
+          tableName: 'Posts',
         },
         key: 'id',
       },
@@ -43,7 +43,7 @@ module.exports = {
       type: Sequelize.DATE,
     },
   }).then(() => {
-    queryInterface.addIndex('Comments', ['projectId']);
+    queryInterface.addIndex('Comments', ['postId']);
     queryInterface.addIndex('Comments', ['userId']);
   }),
   down: (queryInterface) => queryInterface.dropTable('Comments'),

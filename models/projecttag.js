@@ -1,20 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
-  const ProjectTag = sequelize.define('ProjectTag', {
-    projectId: {
+  const PostTag = sequelize.define('PostTag', {
+    postId: {
       type: DataTypes.INTEGER,
-      unique: 'projectTagIndex',
+      unique: 'postTagIndex',
       primaryKey: true,
     },
     tagId: {
       type: DataTypes.INTEGER,
-      unique: 'projectTagIndex',
+      unique: 'postTagIndex',
       primaryKey: true,
     },
   }, {
     timestamps: false,
   });
 
-  ProjectTag.associate = () => {};
+  PostTag.associate = () => {};
 
-  return ProjectTag;
+  return PostTag;
 };

@@ -1,11 +1,11 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('ProjectTags', {
-    projectId: {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('PostTags', {
+    postId: {
       allowNull: false,
       type: Sequelize.INTEGER,
       references: {
         model: {
-          tableName: 'Projects',
+          tableName: 'Posts',
         },
         key: 'id',
       },
@@ -27,8 +27,8 @@ module.exports = {
       primaryKey: true,
     },
   }).then(() => {
-    queryInterface.addIndex('ProjectTags', ['projectId']);
-    queryInterface.addIndex('ProjectTags', ['tagId']);
+    queryInterface.addIndex('PostTags', ['postId']);
+    queryInterface.addIndex('PostTags', ['tagId']);
   }),
-  down: (queryInterface) => queryInterface.dropTable('ProjectTags'),
+  down: (queryInterface) => queryInterface.dropTable('PostTags'),
 };

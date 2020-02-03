@@ -1,19 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
-  const Project = sequelize.define('Project', {
+  const Post = sequelize.define('Post', {
     title: DataTypes.STRING,
     description: DataTypes.STRING,
     img: DataTypes.STRING,
   }, {});
 
-  Project.associate = (models) => {
-    models.Project.belongsTo(models.User, {
+  Post.associate = (models) => {
+    models.Post.belongsTo(models.User, {
       foreignKey: {
         allowNull: false,
       },
     });
-    models.Project.belongsToMany(models.Tag, { through: 'ProjectTags' });
-    models.Project.hasMany(models.Comment);
+    models.Post.belongsToMany(models.Tag, { through: 'PostTags' });
+    models.Post.hasMany(models.Comment);
   };
 
-  return Project;
+  return Post;
 };
