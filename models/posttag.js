@@ -14,7 +14,5 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  PostTag.associate = () => {};
-
   return PostTag;
 };
