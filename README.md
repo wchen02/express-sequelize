@@ -1,5 +1,7 @@
 # express-sequelize
 
+![Node.js CI](https://github.com/wchen02/express-sequelize/workflows/Node.js%20CI/badge.svg?branch=master&event=push)
+
 A starter express server with sequelize that features RESTful API generation based on sequelize models.
 
 ## Features
