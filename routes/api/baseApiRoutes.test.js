@@ -1,7 +1,7 @@
 const baseApiRoutes = require('./baseApiRoutes');
 
 const mockedList = jest.fn();
-const mockedGet = jest.fn();
+const mockedRead = jest.fn();
 const mockedCreate = jest.fn();
 const mockedUpdate = jest.fn();
 const mockedDestroy = jest.fn();
@@ -17,8 +17,8 @@ const mockedController = {
     mockedList();
     return mockedListResp;
   },
-  get: () => {
-    mockedGet();
+  read: () => {
+    mockedRead();
     return mockedGetResp;
   },
   create: () => {
@@ -97,7 +97,7 @@ describe('baseApiRoutes', () => {
         url: '/3',
       }, mockedRes);
 
-      expect(mockedGet).toBeCalledTimes(1);
+      expect(mockedRead).toBeCalledTimes(1);
       expect(mockedRes.json).toBeCalledTimes(1);
       expect(mockedRes.json).toBeCalledWith(mockedGetResp);
     });
@@ -108,7 +108,7 @@ describe('baseApiRoutes', () => {
         url: '/3a',
       }, mockedRes);
 
-      expect(mockedGet).toBeCalledTimes(1);
+      expect(mockedRead).toBeCalledTimes(1);
       expect(mockedRes.sendStatus).toBeCalledWith(400);
     });
 
@@ -118,7 +118,7 @@ describe('baseApiRoutes', () => {
         url: '/-3',
       }, mockedRes);
 
-      expect(mockedGet).toBeCalledTimes(1);
+      expect(mockedRead).toBeCalledTimes(1);
       expect(mockedRes.sendStatus).toBeCalledWith(400);
     });
 
@@ -130,7 +130,7 @@ describe('baseApiRoutes', () => {
         url: '/3',
       }, mockedRes);
 
-      expect(mockedGet).toBeCalledTimes(1);
+      expect(mockedRead).toBeCalledTimes(1);
       expect(mockedRes.sendStatus).toBeCalledWith(404);
     });
   });
