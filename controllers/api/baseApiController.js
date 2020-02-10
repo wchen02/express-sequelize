@@ -1,5 +1,5 @@
 module.exports = (model) => ({
-  getAll: async () => {
+  list: async () => {
     const { rows } = await model.findAndCountAll({
       offset: 0,
       limit: 10,
@@ -8,7 +8,7 @@ module.exports = (model) => ({
     return rows;
   },
 
-  get: async (id) => model.findByPk(id),
+  read: async (id) => model.findByPk(id),
 
   create: async (data) => model.create(data),
 

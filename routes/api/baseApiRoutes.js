@@ -7,7 +7,7 @@ module.exports = (controller) => {
 
   router.get('/', async (req, res) => {
     try {
-      const rows = await controller.getAll();
+      const rows = await controller.list();
       res.json(rows);
     } catch (err) {
       res.sendStatus(500);
@@ -21,7 +21,7 @@ module.exports = (controller) => {
       res.sendStatus(400);
     }
 
-    const resource = await controller.get(id);
+    const resource = await controller.read(id);
 
     if (resource) {
       res.json(resource);

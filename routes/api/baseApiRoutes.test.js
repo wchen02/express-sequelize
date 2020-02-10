@@ -1,11 +1,11 @@
 const baseApiRoutes = require('./baseApiRoutes');
 
-const mockedGetAll = jest.fn();
+const mockedList = jest.fn();
 const mockedGet = jest.fn();
 const mockedCreate = jest.fn();
 const mockedUpdate = jest.fn();
 const mockedDestroy = jest.fn();
-let mockedGetAllResp;
+let mockedListResp;
 let mockedGetResp;
 let mockedCreateResp;
 let mockedUpdateResp;
@@ -13,9 +13,9 @@ let mockedDestroyResp;
 let mockedCreateParams;
 
 const mockedController = {
-  getAll: () => {
-    mockedGetAll();
-    return mockedGetAllResp;
+  list: () => {
+    mockedList();
+    return mockedListResp;
   },
   get: () => {
     mockedGet();
@@ -50,7 +50,7 @@ describe('baseApiRoutes', () => {
 
   afterEach(() => {
     jest.clearAllMocks();
-    mockedGetAllResp = undefined;
+    mockedListResp = undefined;
     mockedGetResp = undefined;
     mockedCreateResp = undefined;
     mockedUpdateResp = undefined;
@@ -58,22 +58,22 @@ describe('baseApiRoutes', () => {
     mockedCreateParams = undefined;
   });
 
-  describe('getAll', () => {
+  describe('list', () => {
     it('should get all resources', async () => {
-      mockedGetAllResp = [{ dummy: true }];
+      mockedListResp = [{ dummy: true }];
 
       await router({
         method: 'GET',
         url: '/',
       }, mockedRes);
 
-      expect(mockedGetAll).toBeCalledTimes(1);
+      expect(mockedList).toBeCalledTimes(1);
       expect(mockedRes.json).toBeCalledTimes(1);
-      expect(mockedRes.json).toBeCalledWith(mockedGetAllResp);
+      expect(mockedRes.json).toBeCalledWith(mockedListResp);
     });
 
     it('should return 500 on error', async () => {
-      mockedGetAll.mockImplementation(() => {
+      mockedList.mockImplementation(() => {
         throw new Error('no good');
       });
 
@@ -82,7 +82,7 @@ describe('baseApiRoutes', () => {
         url: '/',
       }, mockedRes);
 
-      expect(mockedGetAll).toBeCalledTimes(1);
+      expect(mockedList).toBeCalledTimes(1);
       expect(mockedRes.sendStatus).toBeCalledTimes(1);
       expect(mockedRes.sendStatus).toBeCalledWith(500);
     });

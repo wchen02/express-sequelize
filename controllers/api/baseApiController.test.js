@@ -22,14 +22,14 @@ describe('controller', () => {
   const controller = baseApiController(mockedModel);
   it('should get all resources', async () => {
     mockedRows = 1;
-    const rows = await controller.getAll();
+    const rows = await controller.list();
     expect(rows).toEqual(1);
     expect(mockFindAndCountAll).toBeCalledTimes(1);
   });
 
   it('should get resource', async () => {
     const testId = 1;
-    await controller.get(testId);
+    await controller.read(testId);
     expect(mockedModel.findByPk).toBeCalledTimes(1);
     expect(mockedModel.findByPk).toBeCalledWith(testId);
   });
