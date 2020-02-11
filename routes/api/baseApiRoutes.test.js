@@ -6,7 +6,7 @@ const mockedCreate = jest.fn();
 const mockedUpdate = jest.fn();
 const mockedDestroy = jest.fn();
 let mockedListResp;
-let mockedGetResp;
+let mockedReadResp;
 let mockedCreateResp;
 let mockedUpdateResp;
 let mockedDestroyResp;
@@ -19,7 +19,7 @@ const mockedController = {
   },
   read: () => {
     mockedRead();
-    return mockedGetResp;
+    return mockedReadResp;
   },
   create: () => {
     mockedCreate(mockedCreateParams);
@@ -51,7 +51,7 @@ describe('baseApiRoutes', () => {
   afterEach(() => {
     jest.clearAllMocks();
     mockedListResp = undefined;
-    mockedGetResp = undefined;
+    mockedReadResp = undefined;
     mockedCreateResp = undefined;
     mockedUpdateResp = undefined;
     mockedDestroyResp = undefined;
@@ -90,7 +90,7 @@ describe('baseApiRoutes', () => {
 
   describe('get', () => {
     it('should return successfully with valid params', async () => {
-      mockedGetResp = { dummy: true };
+      mockedReadResp = { dummy: true };
 
       await router({
         method: 'GET',
@@ -99,7 +99,7 @@ describe('baseApiRoutes', () => {
 
       expect(mockedRead).toBeCalledTimes(1);
       expect(mockedRes.json).toBeCalledTimes(1);
-      expect(mockedRes.json).toBeCalledWith(mockedGetResp);
+      expect(mockedRes.json).toBeCalledWith(mockedReadResp);
     });
 
     it('should return 400 with invalid params 3a', async () => {
@@ -123,7 +123,7 @@ describe('baseApiRoutes', () => {
     });
 
     it('should return 404 when lookup fails', async () => {
-      mockedGetResp = null;
+      mockedReadResp = null;
 
       await router({
         method: 'GET',
