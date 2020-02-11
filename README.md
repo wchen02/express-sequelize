@@ -7,7 +7,7 @@ A starter express server with sequelize that features RESTful API generation bas
 ## Features
 
 - Automatically generate REST APIs for sequelize models
-- Provides ability to override generated controllers and APIs
+- Provides ability to override generated controllers and APIs (WIP)
 
 ## Getting Started
 
